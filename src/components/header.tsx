@@ -24,7 +24,7 @@ export function Header() {
           </SignUpButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton userProfileUrl="/user/profile" />
         </SignedIn>
       </div>
     </header>

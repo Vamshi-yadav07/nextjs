@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/sripathivamshi/Desktop/clerk-related/clerk/src/app/sign-in/%5B%5B...sign-in%5D%5D/page.tsx"],"sourcesContent":["\"use client\";\n\nimport { SignIn } from \"@clerk/nextjs\";\n\nexport default function SignInPage() {\n  return (\n    <div className=\"flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-gray-100\">\n      <SignIn\n        path=\"/sign-in\"\n        routing=\"path\"\n        signUpUrl=\"/sign-up\"\n        afterSignInUrl=\"/\"\n        appearance={{\n          elements: {\n            card: \"shadow-2xl border border-gray-200 rounded-2xl\",\n            formButtonPrimary: \"bg-black text-white hover:bg-gray-800\",\n          },\n          layout: {\n            socialButtonsPlacement: \"bottom\",\n          },\n        }}\n      />\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AAFA;;;AAIe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC,gNAAM;YACL,MAAK;YACL,SAAQ;YACR,WAAU;YACV,gBAAe;YACf,YAAY;gBACV,UAAU;oBACR,MAAM;oBACN,mBAAmB;gBACrB;gBACA,QAAQ;oBACN,wBAAwB;gBAC1B;YACF;;;;;;;;;;;AAIR","debugId":null}}]
+}

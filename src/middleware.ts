@@ -7,12 +7,9 @@ const isPublicRoute = createRouteMatcher([
   "/sso-callback(.*)"
 ]);
 
-const isOrganizationRoute = createRouteMatcher([
-  "/create-organization"
-]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId, orgId, redirectToSignIn } = await auth();
+  const { userId,  redirectToSignIn } = await auth();
 
   // If it's a public route, allow access
   if (isPublicRoute(req)) {
@@ -22,17 +19,6 @@ export default clerkMiddleware(async (auth, req) => {
   // If user is not authenticated, redirect to sign in
   if (!userId) {
     return redirectToSignIn();
-  }
-
-  // If user is authenticated but on organization creation page, allow access
-  if (isOrganizationRoute(req)) {
-    return NextResponse.next();
-  }
-
-  // If user is authenticated but has no organization, redirect to create organization
-  if (userId && !orgId) {
-    const createOrgUrl = new URL('/create-organization', req.url);
-    return NextResponse.redirect(createOrgUrl);
   }
 
   // User is authenticated and has an organization, allow access
