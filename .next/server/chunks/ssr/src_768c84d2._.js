@@ -205,6 +205,9 @@ function SignUpForm({ className, ...props }) {
             const result = await signUp.attemptEmailAddressVerification({
                 code
             });
+            setActive({
+                session: result.createdSessionId
+            });
             if (result.status === 'complete') {
                 setPendingVerification(false);
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success('Email verified. Please sign in to complete MFA setup.', {
@@ -212,7 +215,7 @@ function SignUpForm({ className, ...props }) {
                     closeButton: true,
                     duration: 4000
                 });
-                router.push('/sign-in?from=signup');
+                router.push('/');
             } else {
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error('Verification failed. Please try again.', {
                     position: 'top-right',

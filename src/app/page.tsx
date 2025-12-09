@@ -1,6 +1,6 @@
 'use client';
 
-import { useUser, useOrganization, SignedIn, SignedOut } from '@clerk/nextjs';
+import { useUser, useOrganization, SignedIn, SignedOut, OrganizationSwitcher } from '@clerk/nextjs';
 import Image from "next/image";
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -112,6 +112,7 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+      <OrganizationSwitcher />
     </div>
   );
 }

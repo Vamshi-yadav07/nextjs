@@ -67,7 +67,7 @@ export  function SignUpForm({ className, ...props }: SignUpFormProps) {
       const result = await signUp.attemptEmailAddressVerification({
         code,
       });
-
+      setActive({ session: result.createdSessionId });
       if (result.status === 'complete') {
         setPendingVerification(false);
         toast.success('Email verified. Please sign in to complete MFA setup.', {
@@ -75,7 +75,7 @@ export  function SignUpForm({ className, ...props }: SignUpFormProps) {
           closeButton: true,
           duration: 4000,
         });
-        router.push('/sign-in?from=signup');
+        router.push('/');
       } else {
         toast.error('Verification failed. Please try again.', {
           position: 'top-right',

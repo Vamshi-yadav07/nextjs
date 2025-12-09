@@ -29,19 +29,37 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 const isPublicRoute = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$routeMatcher$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["createRouteMatcher"])([
     "/sign-in(.*)",
     "/sign-up(.*)",
-    "/sso-callback(.*)"
+    "/sso-callback(.*)",
+    "/session-tasks(.*)"
+]);
+const isProtectedRoute = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$routeMatcher$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["createRouteMatcher"])([
+    '/dashboard(.*)',
+    '/org(.*)',
+    '/user(.*)',
+    '/'
 ]);
 const __TURBOPACK__default__export__ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$clerk$2f$nextjs$2f$dist$2f$esm$2f$server$2f$clerkMiddleware$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["clerkMiddleware"])(async (auth, req)=>{
-    const { userId, redirectToSignIn } = await auth();
+    const { isAuthenticated, redirectToSignIn, sessionStatus } = await auth();
+    // Send users with pending sessions to the /session-tasks page
+    // Handle both authenticated and unauthenticated users with pending sessions
+    if (sessionStatus === 'pending' && isProtectedRoute(req)) {
+        // Don't redirect if already on session-tasks page
+        if (!req.nextUrl.pathname.startsWith('/session-tasks')) {
+            const url = req.nextUrl.clone();
+            url.pathname = '/session-tasks';
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].redirect(url);
+        }
+    }
+    // Send users who are not authenticated
+    // and don't have pending tasks to the sign-in page
+    if (!isAuthenticated && isProtectedRoute(req)) {
+        return redirectToSignIn();
+    }
     // If it's a public route, allow access
     if (isPublicRoute(req)) {
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
     }
-    // If user is not authenticated, redirect to sign in
-    if (!userId) {
-        return redirectToSignIn();
-    }
-    // User is authenticated and has an organization, allow access
+    // User is authenticated, allow access
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["NextResponse"].next();
 });
 const config = {
