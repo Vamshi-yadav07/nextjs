@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 12, "column": 0}, "map": {"version":3,"sources":["file:///Users/sripathivamshi/Desktop/clerk-related/clerk/src/app/user/mfa/page.tsx"],"sourcesContent":["import { UserProfile } from \"@clerk/nextjs\";\n\nexport default function MfaPage() {\n  return (\n    <div className=\"flex min-h-[calc(100vh-4rem)] items-center justify-center p-4\">\n      <UserProfile\n        routing=\"hash\"\n        __experimental_startPath=\"security\"\n        appearance={{\n          elements: {\n            card: \"shadow-2xl border border-gray-200 rounded-2xl\",\n          },\n        }}\n      />\n    </div>\n  );\n}\n\n\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC,qMAAW;YACV,SAAQ;YACR,0BAAyB;YACzB,YAAY;gBACV,UAAU;oBACR,MAAM;gBACR;YACF;;;;;;;;;;;AAIR","debugId":null}}]
+}

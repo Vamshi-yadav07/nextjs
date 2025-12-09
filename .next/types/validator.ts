@@ -36,6 +36,24 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 }
 
 
+// Validate ../../src/app/account/manage-mfa/add/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/account/manage-mfa/add">> = Specific
+  const handler = {} as typeof import("../../src/app/account/manage-mfa/add/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/account/manage-mfa/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/account/manage-mfa">> = Specific
+  const handler = {} as typeof import("../../src/app/account/manage-mfa/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific

@@ -34,7 +34,7 @@ export default function SignInForm() {
       }
 
       // If complete (no MFA required)
-      if (firstFactor.status === 'complete') {
+      else if (firstFactor.status === 'complete') {
         await setActive({ session: firstFactor.createdSessionId })
         router.push('/')
       }

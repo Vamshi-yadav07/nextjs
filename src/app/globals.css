@@ -121,3 +121,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* .cl-profileSectionPrimaryButton {
+  display: none !important;
+} */
+
+
+.cl-profileSectionPrimaryButton__emailAddresses {
+  display: none !important;
+}
